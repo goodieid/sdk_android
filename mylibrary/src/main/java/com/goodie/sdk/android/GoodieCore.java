@@ -99,30 +99,15 @@ public class GoodieCore{
             this.extras = extras;
         }
 
-        public void loginGoodie(LoginRequest request){
-            loginObs(request).subscribeOn(Schedulers.io())
+        public void loginGoodie(LoginRequest request, SetUserListener listener){
+            loginObsev(request)
+                    .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<LoginResponse>(){
-                        @Override
-                        public void onCompleted(){
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e){
-
-                        }
-
-                        @Override
-                        public void onNext(final LoginResponse loginResponse){
-
-                        }
-                    });
+                    .subscribe(listener::onSuccess, listener::onError);
         }
 
 
-
-        public Observable<LoginResponse> loginObs(LoginRequest loginRequest){
+        public Observable<LoginResponse> loginObsev(LoginRequest loginRequest){
             return GoodieApis.getInstance().loginOrRegister(loginRequest);
         }
 
