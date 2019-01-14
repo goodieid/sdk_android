@@ -67,9 +67,15 @@ public enum GoodieApis {
     }
 
 
+    public Observable<LoginResponse> loginOrRegister(String username, String password) {
+        return api.loginRegister(getRequest(username, password));
+    }
 
-    public Observable<LoginResponse> loginOrRegister(LoginRequest loginRequest) {
-        return api.loginRegister(loginRequest);
+    private LoginRequest getRequest(String username, String password){
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername(username);
+        loginRequest.setPassword(password);
+        return  loginRequest;
     }
 
 

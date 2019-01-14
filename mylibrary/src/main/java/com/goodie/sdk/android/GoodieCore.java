@@ -6,9 +6,7 @@ import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
 import org.json.JSONObject;
 import rx.Observable;
-import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -30,7 +28,6 @@ public class GoodieCore{
         return new SetUserBuilder(userEmail, userKey);
     }
 
-
     public interface SetUserListener {
         void onSuccess(LoginResponse loginResponse);
         void onError(Throwable throwable);
@@ -41,8 +38,8 @@ public class GoodieCore{
         private String email;
         private String password;
         private String username;
-        private String avatarUrl;
-        private JSONObject extras;
+
+
 
         private SetUserBuilder(String email, String password) {
             this.email = email;
@@ -80,35 +77,18 @@ public class GoodieCore{
             this.username = username;
         }
 
-        public String getAvatarUrl() {
-            return avatarUrl;
-        }
 
-        public void setAvatarUrl(String avatarUrl) {
-            this.avatarUrl = avatarUrl;
-        }
-
-        public JSONObject getExtras() {
-            return extras;
-        }
-
-        public void setExtras(JSONObject extras) {
-            this.extras = extras;
-        }
-
-        public void loginGoodie(LoginRequest request, SetUserListener listener){
-            loginObsev(request)
+        public void loginGoodie(SetUserListener listener){
+            loginObsev(username, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(listener::onSuccess, listener::onError);
         }
 
 
-        public Observable<LoginResponse> loginObsev(LoginRequest loginRequest){
-            return GoodieApis.getInstance().loginOrRegister(loginRequest);
+        public Observable<LoginResponse> loginObsev(String username, String password){
+            return GoodieApis.getInstance().loginOrRegister(username, password);
         }
-
-
 
     }
 

@@ -6,10 +6,8 @@ package com.goodie.sdk.android;
 
 public class Goodie {
 
-    public static GoodieCore.SetUserBuilder setUser(String userEmail, String userKey) {
-        return GoodieCore.setUser(userEmail, userKey);
+    public static GoodieCore.SetUserBuilder setLogin(String userEmail, String password) {
+        return GoodieCore.setUser(userEmail, password);
     }
-
-
 
 }
