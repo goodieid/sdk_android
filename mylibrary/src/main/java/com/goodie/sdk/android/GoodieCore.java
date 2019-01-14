@@ -2,9 +2,7 @@ package com.goodie.sdk.android;
 import android.app.Application;
 import android.support.annotation.RestrictTo;
 import com.goodie.sdk.android.data.api.GoodieApis;
-import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
-import org.json.JSONObject;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -38,7 +36,6 @@ public class GoodieCore{
         private String email;
         private String password;
         private String username;
-
 
 
         private SetUserBuilder(String email, String password) {
