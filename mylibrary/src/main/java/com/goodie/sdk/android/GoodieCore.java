@@ -105,7 +105,7 @@ public class GoodieCore{
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(listener::onSuccess, listener::onError);
         }
-
+        
 
         public Observable<LoginResponse> loginObsev(LoginRequest loginRequest){
             return GoodieApis.getInstance().loginOrRegister(loginRequest);
