@@ -1,9 +1,6 @@
 package com.goodie.sdk.android;
 import android.app.Application;
-import android.graphics.Color;
 import android.support.annotation.RestrictTo;
-import android.widget.Toast;
-
 import com.goodie.sdk.android.data.api.GoodieApis;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
@@ -105,7 +102,7 @@ public class GoodieCore{
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(listener::onSuccess, listener::onError);
         }
-        
+
 
         public Observable<LoginResponse> loginObsev(LoginRequest loginRequest){
             return GoodieApis.getInstance().loginOrRegister(loginRequest);
