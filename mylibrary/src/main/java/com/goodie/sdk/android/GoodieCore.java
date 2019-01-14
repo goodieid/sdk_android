@@ -1,5 +1,6 @@
 package com.goodie.sdk.android;
 import android.app.Application;
+import android.content.Context;
 import android.support.annotation.RestrictTo;
 import com.goodie.sdk.android.data.api.GoodieApis;
 import com.goodie.sdk.android.data.response.LoginResponse;
@@ -75,16 +76,16 @@ public class GoodieCore{
         }
 
 
-        public void loginGoodie(SetUserListener listener){
-            loginObsev(username, password)
+        public void loginGoodie(SetUserListener listener, Context context){
+            loginObsev(username, password, context)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(listener::onSuccess, listener::onError);
         }
 
 
-        public Observable<LoginResponse> loginObsev(String username, String password){
-            return GoodieApis.getInstance().loginOrRegister(username, password);
+        public Observable<LoginResponse> loginObsev(String username, String password, Context context){
+            return GoodieApis.getInstance().loginOrRegister(username, password, context);
         }
 
     }

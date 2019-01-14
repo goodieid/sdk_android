@@ -1,4 +1,8 @@
 package com.goodie.sdk.android.data.api;
+import android.content.Context;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
+
 import com.goodie.sdk.android.data.bean.GoodieAccount;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
@@ -67,16 +71,19 @@ public enum GoodieApis {
     }
 
 
-    public Observable<LoginResponse> loginOrRegister(String username, String password) {
-        return api.loginRegister(getRequest(username, password));
+    public Observable<LoginResponse> loginOrRegister(String username, String password, Context context) {
+        return api.loginRegister(getRequest(username, password, context));
     }
 
-    private LoginRequest getRequest(String username, String password){
+    private LoginRequest getRequest(String username, String password, Context context){
+        final String idDevice = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(username);
         loginRequest.setPassword(password);
+        loginRequest.setDeviceUniqueId(idDevice);
         return  loginRequest;
     }
+
 
 
     public interface Apis {
