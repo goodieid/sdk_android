@@ -76,7 +76,7 @@ public class GoodieCore{
         }
 
 
-        public void loginGoodie(SetUserListener listener, Context context){
+        public void loginGoodie(Context context, SetUserListener listener){
             loginObsev(username, password, context)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

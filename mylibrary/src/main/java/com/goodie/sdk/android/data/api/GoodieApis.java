@@ -1,14 +1,8 @@
 package com.goodie.sdk.android.data.api;
 import android.content.Context;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
-
-import com.goodie.sdk.android.data.bean.GoodieAccount;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
-
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
