@@ -1,8 +1,12 @@
 package com.goodie.sdk.android.data.api;
 import android.content.Context;
 import android.provider.Settings;
+
+import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
+import com.goodie.sdk.android.data.response.MemberPointBalanceResponse;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
@@ -10,10 +14,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -46,8 +52,7 @@ public enum GoodieApis {
     private OkHttpClient getCustomClient(){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(
-                new Interceptor(){
+        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor(){
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request.Builder requestBuilder = chain.request().newBuilder();
@@ -65,8 +70,15 @@ public enum GoodieApis {
     }
 
 
-    public Observable<LoginResponse> loginOrRegister(String username, String password, Context context) {
+    public Observable<LoginResponse> loginOrRegister(String username, String password, Context context){
         return api.loginRegister(getRequest(username, password, context));
+    }
+
+    public Observable<MemberPointBalanceResponse> memberPoint(String contentType,
+                                                              String authToken,
+                                                              Context context,
+                                                              CheckMemberPointsReq request) {
+        return api.checkMemberPoint(contentType, authToken, getDeviceId(context), request);
     }
 
     private LoginRequest getRequest(String username, String password, Context context){
@@ -78,13 +90,26 @@ public enum GoodieApis {
         return  loginRequest;
     }
 
+    private String getDeviceId(Context context){
+        String result = "";
+        result = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        return result;
+    }
 
 
     public interface Apis {
+
+        //LOGIN
         @POST("authentication/create")
         Observable<LoginResponse> loginRegister(@Body LoginRequest request);
-    }
 
+        //CHECK MEMBER POINT BALANCE
+        @POST("member/points")
+        Observable<MemberPointBalanceResponse> checkMemberPoint(@Header("Content-Type") String contentType,
+                                                          @Header("authToken") String authToken,
+                                                          @Header("deviceUniqueId") String deviceUniqueId,
+                                                          @Body CheckMemberPointsReq request);
+    }
 
 
 }

@@ -3,7 +3,9 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.RestrictTo;
 import com.goodie.sdk.android.data.api.GoodieApis;
+import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
 import com.goodie.sdk.android.data.response.LoginResponse;
+import com.goodie.sdk.android.data.response.MemberPointBalanceResponse;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -27,8 +29,17 @@ public class GoodieCore{
         return new SetUserBuilder(userEmail, userKey);
     }
 
+    public static SetMemberPointBuilder setMemberPointBuilder(String contentType, String authToken, CheckMemberPointsReq request){
+        return new SetMemberPointBuilder(contentType, authToken, request);
+    }
+
     public interface SetUserListener {
         void onSuccess(LoginResponse loginResponse);
+        void onError(Throwable throwable);
+    }
+
+    public interface SetMemberPointListener {
+        void onSuccess(MemberPointBalanceResponse loginResponse);
         void onError(Throwable throwable);
     }
 
@@ -38,43 +49,11 @@ public class GoodieCore{
         private String password;
         private String username;
 
-
         private SetUserBuilder(String email, String password) {
             this.email = email;
             this.password = password;
             this.username = email;
         }
-
-
-        public SetUserBuilder withUsername(String username) {
-            this.username = username;
-            return this;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
 
         public void loginGoodie(Context context, SetUserListener listener){
             loginObsev(username, password, context)
@@ -89,6 +68,35 @@ public class GoodieCore{
         }
 
     }
+
+
+    public static class SetMemberPointBuilder{
+
+        private String contentType;
+        private String authToken;
+        private CheckMemberPointsReq checkMemberPointsReq;
+
+         private SetMemberPointBuilder(String contentType, String authToken, CheckMemberPointsReq request) {
+            this.contentType = contentType;
+            this.authToken = authToken;
+            this.checkMemberPointsReq = request;
+        }
+
+        public void memberPointGoodie(Context context, SetMemberPointListener listener){
+            memberPointObsev(contentType, authToken, context, checkMemberPointsReq)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(listener::onSuccess, listener::onError);
+        }
+
+        public Observable<MemberPointBalanceResponse> memberPointObsev(String contentType, String authToken, Context context, CheckMemberPointsReq req){
+            return GoodieApis.getInstance().memberPoint(contentType, authToken, context, req);
+        }
+
+    }
+
+
+
 
 
 
