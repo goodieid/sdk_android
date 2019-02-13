@@ -4,8 +4,8 @@ import android.support.annotation.RestrictTo;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
+import com.goodie.sdk.android.data.builder.VerificationBuilder;
 import com.goodie.sdk.android.data.config.GoodieConfig;
-import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
 
 /**
  * Created by asep.surahman on 07/01/2019.
@@ -32,8 +32,12 @@ public class Goodie {
                                             birthDate, referralCode);
     }
 
-    public static MemberPointBuilder setMemberPoint(String contentType, String authToken, CheckMemberPointsReq request){
-        return GoodieCore.setMemberPointBuilder(contentType, authToken, request);
+    public static VerificationBuilder setVerification(String username, String merchantId, String code){
+        return GoodieCore.setVerificationUser(username, merchantId, code);
+    }
+
+    public static MemberPointBuilder setMemberPoint(String memberId, String merchantId){
+        return GoodieCore.setMemberPointBuilder(memberId, merchantId);
     }
 
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)

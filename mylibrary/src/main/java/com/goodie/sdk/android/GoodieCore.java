@@ -4,7 +4,7 @@ import android.support.annotation.RestrictTo;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
-import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
+import com.goodie.sdk.android.data.builder.VerificationBuilder;
 
 /**
  * Created by asep.surahman on 09/01/2019.
@@ -47,23 +47,25 @@ public class GoodieCore{
         appServer = !serverBaseUrl.endsWith("/") ? serverBaseUrl + "/" : serverBaseUrl;
     }
 
-
     //login
     public static LoginBuilder setLoginUser(String userEmail, String userKey, String memberId){
         return new LoginBuilder(userEmail, userKey, memberId);
     }
 
     //register user
-    public static RegisterBuilder setRegisterUser(String username, String merchantId, String phoneNumber,
-                                                  String password, String firstName, String lastName,
+    public static RegisterBuilder setRegisterUser(String username, String merchantId, String phoneNumber, String password, String firstName, String lastName,
                                                   String birthDate, String referralCode){
-        return new RegisterBuilder(username, merchantId, phoneNumber, password, firstName, lastName,
-                                                 birthDate, referralCode);
+        return new RegisterBuilder(username, merchantId, phoneNumber, password, firstName, lastName, birthDate, referralCode);
+    }
+
+    //verification
+    public static VerificationBuilder setVerificationUser(String username, String merchantId, String code){
+        return new VerificationBuilder(username, merchantId, code);
     }
 
     //member point
-    public static MemberPointBuilder setMemberPointBuilder(String contentType, String authToken, CheckMemberPointsReq request){
-        return new MemberPointBuilder(contentType, authToken, request);
+    public static MemberPointBuilder setMemberPointBuilder(String memberId, String merchantId){
+        return new MemberPointBuilder(memberId, merchantId);
     }
 
 

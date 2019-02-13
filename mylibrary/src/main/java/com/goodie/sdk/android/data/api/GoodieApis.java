@@ -1,11 +1,13 @@
 package com.goodie.sdk.android.data.api;
 import android.content.Context;
-import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
 import com.goodie.sdk.android.data.request.LoginRequest;
+import com.goodie.sdk.android.data.request.MemberPointRequest;
 import com.goodie.sdk.android.data.request.RegisterRequest;
+import com.goodie.sdk.android.data.request.VerificationRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
-import com.goodie.sdk.android.data.response.MemberPointBalanceResponse;
+import com.goodie.sdk.android.data.response.MemberPointResponse;
 import com.goodie.sdk.android.data.response.RegisterResponse;
+import com.goodie.sdk.android.data.response.VerificationResponse;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
@@ -17,7 +19,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -78,10 +79,14 @@ public enum GoodieApis {
                                                     firstName, lastName, birthDate, referralCode, context));
     }
 
-
-    public Observable<MemberPointBalanceResponse> doMemberPoint(String contentType, String authToken, Context context, CheckMemberPointsReq request) {
-        return api.checkMemberPoint(contentType, authToken, GoodieModel.getDeviceId(context), request);
+    public Observable<VerificationResponse> doVerifation(String username, String code, String merchantId, Context context){
+        return api.verification(GoodieModel.setVerificationRequest(username, code, merchantId, context));
     }
+
+    public Observable<MemberPointResponse> doMemberPoint(String memberId, String merchantId, Context context) {
+        return api.memberPoint(GoodieModel.setMemberPointRequest(memberId, merchantId, context));
+    }
+
 
     public interface Apis {
 
@@ -91,11 +96,11 @@ public enum GoodieApis {
         @POST("member/profile/registration")
         Observable<RegisterResponse> register(@Body RegisterRequest request);
 
+        @POST("member/registration/verification")
+        Observable<VerificationResponse> verification(@Body VerificationRequest request);
+
         @POST("member/points")
-        Observable<MemberPointBalanceResponse> checkMemberPoint(@Header("Content-Type") String contentType,
-                                                          @Header("authToken") String authToken,
-                                                          @Header("deviceUniqueId") String deviceUniqueId,
-                                                          @Body CheckMemberPointsReq request);
+        Observable<MemberPointResponse> memberPoint(@Body MemberPointRequest request);
     }
 
 

@@ -1,5 +1,4 @@
 package com.goodie.sdk.android.data.builder;
-
 import android.content.Context;
 import com.goodie.sdk.android.data.api.GoodieApis;
 import com.goodie.sdk.android.data.listener.SetRegisterListener;
@@ -46,7 +45,6 @@ public class RegisterBuilder {
     public Observable<RegisterResponse> registerObserv(String username, String merchantId, String phoneNumber,
                                                        String password, String firstName, String lastName,
                                                        String birthDate, String referralCode, Context context){
-        return GoodieApis.getInstance().doRegister(username, merchantId, phoneNumber, password, firstName, lastName,
-                birthDate, referralCode, context);
+        return GoodieApis.getInstance().doRegister(username, merchantId, phoneNumber, password, firstName, lastName, birthDate, referralCode, context);
     }
 }
