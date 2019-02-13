@@ -64,20 +64,6 @@ public class GoodieCore{
         return new LoginBuilder(userEmail, userKey, memberId);
     }
 
-    public void loginGoodie(Context context, SetLoginListener listener){
-        loginObserv( LoginBuilder.username,  LoginBuilder.password,  LoginBuilder.memberId, context)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listener::onSuccess, listener::onError);
-    }
-
-    public Observable<LoginResponse> loginObserv(String username, String password, String memberId, Context context){
-        return GoodieApis.getInstance().doLogin(username, password, memberId, context);
-    }
-    //end
-
-
-
     //register user
     public static RegisterBuilder setRegisterUser(String username, String merchantId, String phoneNumber,
                                                   String password, String firstName, String lastName,

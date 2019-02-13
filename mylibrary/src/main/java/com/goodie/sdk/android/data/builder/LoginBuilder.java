@@ -1,43 +1,39 @@
 package com.goodie.sdk.android.data.builder;
 
 
+import android.content.Context;
+import com.goodie.sdk.android.data.api.GoodieApis;
+import com.goodie.sdk.android.data.listener.SetLoginListener;
+import com.goodie.sdk.android.data.response.LoginResponse;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 /**
  * Created by Goodie on 13/02/2019.
  */
 
 public class LoginBuilder {
 
-    public static String password;
-    public static String username;
-    public static String memberId;
+    private String password;
+    private String username;
+    private String memberId;
 
     public LoginBuilder(String password, String username, String memberId){
-        LoginBuilder.password = password;
-        LoginBuilder.username = username;
-        LoginBuilder.memberId = memberId;
+        this.password = password;
+        this.username = username;
+        this.memberId = memberId;
     }
 
-    public static String getPassword() {
-        return password;
+    public void loginGoodie(Context context, SetLoginListener listener){
+        loginObserv(username,  password,  memberId, context)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public static void setPassword(String password) {
-        LoginBuilder.password = password;
+    public Observable<LoginResponse> loginObserv(String username, String password, String memberId, Context context){
+        return GoodieApis.getInstance().doLogin(username, password, memberId, context);
     }
 
-    public static String getUsername() {
-        return username;
-    }
-
-    public static void setUsername(String username) {
-        LoginBuilder.username = username;
-    }
-
-    public static String getMemberId() {
-        return memberId;
-    }
-
-    public static void setMemberId(String memberId) {
-        LoginBuilder.memberId = memberId;
-    }
 }
