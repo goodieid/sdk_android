@@ -1,5 +1,4 @@
 package com.goodie.sdk.android.data.request;
-
 import com.google.gson.annotations.SerializedName;
 
 /**

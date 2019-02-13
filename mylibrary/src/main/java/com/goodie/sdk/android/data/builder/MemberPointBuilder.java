@@ -1,5 +1,4 @@
 package com.goodie.sdk.android.data.builder;
-
 import android.content.Context;
 import com.goodie.sdk.android.data.api.GoodieApis;
 import com.goodie.sdk.android.data.listener.SetMemberPointListener;
