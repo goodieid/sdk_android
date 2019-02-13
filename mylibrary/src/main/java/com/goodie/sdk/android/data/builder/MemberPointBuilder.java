@@ -1,6 +1,15 @@
 package com.goodie.sdk.android.data.builder;
 
+import android.content.Context;
+
+import com.goodie.sdk.android.data.api.GoodieApis;
+import com.goodie.sdk.android.data.listener.SetMemberPointListener;
 import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
+import com.goodie.sdk.android.data.response.MemberPointBalanceResponse;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Goodie on 13/02/2019.
@@ -8,37 +17,26 @@ import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
 
 public class MemberPointBuilder {
 
-    public static String contentType;
-    public static String authToken;
-    public static CheckMemberPointsReq checkMemberPointsReq;
+    private String contentType;
+    private String authToken;
+    private CheckMemberPointsReq checkMemberPointsReq;
 
     public MemberPointBuilder(String contentType, String authToken, CheckMemberPointsReq checkMemberPointsReq){
-        MemberPointBuilder.contentType = contentType;
-        MemberPointBuilder.authToken = authToken;
-        MemberPointBuilder.checkMemberPointsReq = checkMemberPointsReq;
+        this.contentType = contentType;
+        this.authToken = authToken;
+        this.checkMemberPointsReq = checkMemberPointsReq;
     }
 
-    public static String getContentType() {
-        return contentType;
+    public void memberPointGoodie(Context context, SetMemberPointListener listener){
+        memberPointObserv(contentType, authToken, context, checkMemberPointsReq)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public static void setContentType(String contentType) {
-        MemberPointBuilder.contentType = contentType;
+    public Observable<MemberPointBalanceResponse> memberPointObserv(String contentType, String authToken, Context context, CheckMemberPointsReq req){
+        return GoodieApis.getInstance().doMemberPoint(contentType, authToken, context, req);
     }
 
-    public static String getAuthToken() {
-        return authToken;
-    }
 
-    public static void setAuthToken(String authToken) {
-        MemberPointBuilder.authToken = authToken;
-    }
-
-    public static CheckMemberPointsReq getCheckMemberPointsReq() {
-        return checkMemberPointsReq;
-    }
-
-    public static void setCheckMemberPointsReq(CheckMemberPointsReq checkMemberPointsReq) {
-        MemberPointBuilder.checkMemberPointsReq = checkMemberPointsReq;
-    }
 }
