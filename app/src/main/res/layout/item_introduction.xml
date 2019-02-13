@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.github.silvestrpredko.dotprogressbar.DotProgressBar
+        android:id="@+id/introduction.pbImg"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        app:duration="300"
+        android:layout_alignParentBottom="true"
+        app:endColor="@color/black"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:startColor="@color/t40_black" />
+
+    <TextView
+        android:id="@+id/introduction.tverror"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Error to get image"
+        android:textSize="@dimen/font_medium"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/introduction.image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        />
+
+    <!--<ImageView
+        android:id="@+id/introduction.image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/image_placeholder"
+        android:duplicateParentState="true"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/_3sdp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />-->
+
+</RelativeLayout>

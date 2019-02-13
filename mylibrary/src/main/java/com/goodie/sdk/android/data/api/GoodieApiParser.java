@@ -1,4 +1,4 @@
-package com.goodie.sdk.android.data.remote;
+package com.goodie.sdk.android.data.api;
 import com.goodie.sdk.android.data.response.AbstractResponse;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -10,12 +10,10 @@ import org.json.JSONObject;
 
 final class GoodieApiParser {
 
-
     static AbstractResponse parseGoodieAuth(JsonElement jsonElement) {
         JsonObject jsonAccount = jsonElement.getAsJsonObject().get("authenticationTokens").getAsJsonObject().get("abstractResponse").getAsJsonObject();
         return parseGooieAbstractResponse(jsonAccount);
     }
-
 
     static AbstractResponse parseGooieAbstractResponse(JsonObject jsonAccount){
         AbstractResponse abstractResponse = new AbstractResponse();

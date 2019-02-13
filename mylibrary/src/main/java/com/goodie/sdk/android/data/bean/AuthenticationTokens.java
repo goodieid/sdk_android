@@ -1,5 +1,4 @@
 package com.goodie.sdk.android.data.bean;
-
 import com.goodie.sdk.android.data.response.GenericResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

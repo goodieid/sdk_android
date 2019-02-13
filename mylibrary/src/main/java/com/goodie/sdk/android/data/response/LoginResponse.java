@@ -20,5 +20,4 @@ public class LoginResponse {
     public void setAuthenticationTokens(AuthenticationTokens authenticationTokens){
         this.authenticationTokens = authenticationTokens;
     }
-
 }

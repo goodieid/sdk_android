@@ -1,12 +1,11 @@
 package com.goodie.sdk.android.data.api;
 import android.content.Context;
-import android.provider.Settings;
-
 import com.goodie.sdk.android.data.request.CheckMemberPointsReq;
 import com.goodie.sdk.android.data.request.LoginRequest;
+import com.goodie.sdk.android.data.request.RegisterRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
 import com.goodie.sdk.android.data.response.MemberPointBalanceResponse;
-
+import com.goodie.sdk.android.data.response.RegisterResponse;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
@@ -14,7 +13,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -34,8 +32,7 @@ public enum GoodieApis {
     private String baseUrl;
 
     GoodieApis(){
-
-        baseUrl = "http://52.76.117.11:8081/lifestyle-ws-vc2/api-rest/"; //URL STAGING
+        baseUrl = "http://52.76.117.11:8081/lifestyle-ws-goodie/api-rest/"; //URL GOODIE
         api = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(getCustomClient())
@@ -45,7 +42,7 @@ public enum GoodieApis {
                 .create(Apis.class);
     }
 
-    public static GoodieApis getInstance() {
+    public static GoodieApis getInstance(){
         return INSTANCE;
     }
 
@@ -70,40 +67,30 @@ public enum GoodieApis {
     }
 
 
-    public Observable<LoginResponse> loginOrRegister(String username, String password, Context context){
-        return api.loginRegister(getRequest(username, password, context));
+    public Observable<LoginResponse> doLogin(String username, String password, String memberId, Context context){
+        return api.login(GoodieModel.setLoginRequest(username, password, memberId, context));
     }
 
-    public Observable<MemberPointBalanceResponse> memberPoint(String contentType,
-                                                              String authToken,
-                                                              Context context,
-                                                              CheckMemberPointsReq request) {
-        return api.checkMemberPoint(contentType, authToken, getDeviceId(context), request);
+    public Observable<RegisterResponse> doRegister(String username, String merchantId, String phoneNumber,
+                                                   String password, String firstName, String lastName,
+                                                   String birthDate, String referralCode, Context context){
+        return api.register(GoodieModel.setRegisterRequest(username, merchantId, phoneNumber, password,
+                                                    firstName, lastName, birthDate, referralCode, context));
     }
 
-    private LoginRequest getRequest(String username, String password, Context context){
-        final String idDevice = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername(username);
-        loginRequest.setPassword(password);
-        loginRequest.setDeviceUniqueId(idDevice);
-        return  loginRequest;
-    }
 
-    private String getDeviceId(Context context){
-        String result = "";
-        result = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        return result;
+    public Observable<MemberPointBalanceResponse> doMemberPoint(String contentType, String authToken, Context context, CheckMemberPointsReq request) {
+        return api.checkMemberPoint(contentType, authToken, GoodieModel.getDeviceId(context), request);
     }
-
 
     public interface Apis {
 
-        //LOGIN
         @POST("authentication/create")
-        Observable<LoginResponse> loginRegister(@Body LoginRequest request);
+        Observable<LoginResponse> login(@Body LoginRequest request);
 
-        //CHECK MEMBER POINT BALANCE
+        @POST("member/profile/registration")
+        Observable<RegisterResponse> register(@Body RegisterRequest request);
+
         @POST("member/points")
         Observable<MemberPointBalanceResponse> checkMemberPoint(@Header("Content-Type") String contentType,
                                                           @Header("authToken") String authToken,

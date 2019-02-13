@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_100">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/llInclude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--<include layout="@layout/home_fragment_akun_saya"/>-->
+                <include layout="@layout/home_fragment_pager" />
+
+                <RelativeLayout
+                    android:id="@+id/ll_promo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_half"
+                    android:layout_marginBottom="@dimen/space"
+                    android:layout_below="@+id/llInclude"
+                    android:layout_marginLeft="@dimen/space"
+                    android:layout_marginRight="@dimen/space"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/tvView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/space"
+                        android:paddingTop="@dimen/space"
+                        android:text="Kategori"
+                        android:textColor="@color/grey_700"
+                        android:textSize="@dimen/font_reg"
+                        android:textStyle="bold" />
+
+
+                    <FrameLayout
+                        android:id="@+id/ll_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/tvView"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:clickable="true"
+                        android:padding="@dimen/space">
+
+                        <GridView
+                            android:id="@+id/gridView"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_120sdp"
+                            android:gravity="center"
+                            android:numColumns="4"
+                            android:scrollbars="none"
+                            android:stretchMode="columnWidth">
+                        </GridView>
+
+                        <include layout="@layout/l_no_data" />
+                    </FrameLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_voucher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_half"
+                    android:layout_marginBottom="@dimen/space"
+                    android:layout_below="@+id/ll_promo"
+                    >
+
+
+                    <LinearLayout
+                        android:id="@+id/llTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/tvViewPromo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/space_double"
+                            android:paddingTop="@dimen/space"
+                            android:text="@string/whats_on"
+                            android:textColor="@color/grey_700"
+                            android:textSize="@dimen/font_reg"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            >
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_gravity="right"
+                                android:background="@drawable/left_bg_round_gold"
+                                android:text="See more >"
+                                android:textSize="@dimen/_8sdp"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/llTitle"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/space"
+                        android:clickable="true"
+                        android:padding="@dimen/space">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvPromo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scrollbars="none" />
+
+                        <include layout="@layout/l_no_data" />
+                    </FrameLayout>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
