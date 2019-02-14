@@ -17,9 +17,9 @@ public class LoginBuilder {
     private String username;
     private String memberId;
 
-    public LoginBuilder(String password, String username, String memberId){
-        this.password = password;
+    public LoginBuilder(String username, String password, String memberId){
         this.username = username;
+        this.password = password;
         this.memberId = memberId;
     }
 

@@ -39,4 +39,20 @@ public class VerificationRequest {
     public void setCode(String code) {
         this.code = code;
     }
+
+    @Override
+    public String toString(){
+        return
+                "VerificationReq{" +
+                        "username = '" + username + '\'' +
+                        "code = '" + code + '\'' +
+                        ",merchantId = '" + merchantId + '\'' +
+                        "}";
+    }
+
+    /*{
+        "username" : "macanyoha@gmail.com",
+            "code" : "1234",
+            "merchantId" : "5F773EA1-1E66-4F9E-B9C8-E1FA8156AD20"
+    }*/
 }

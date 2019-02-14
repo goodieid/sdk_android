@@ -1,10 +1,14 @@
 package com.goodie.sdk.android.data.api;
 import android.content.Context;
 import android.provider.Settings;
+
+import com.goodie.sdk.android.data.bean.BasicRulesReq;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.request.MemberPointRequest;
+import com.goodie.sdk.android.data.request.PromoInqBasicRequest;
 import com.goodie.sdk.android.data.request.RegisterRequest;
 import com.goodie.sdk.android.data.request.VerificationRequest;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Goodie on 13/02/2019.
@@ -47,7 +51,6 @@ public class GoodieModel {
     }
 
     public static VerificationRequest setVerificationRequest(String username, String code, String merchantId, Context context){
-        final String idDevice = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         VerificationRequest verificationRequest = new VerificationRequest();
         verificationRequest.setUsername(username);
         verificationRequest.setCode(code);
@@ -56,11 +59,30 @@ public class GoodieModel {
     }
 
     public static MemberPointRequest setMemberPointRequest(String memberId, String merchantId, Context context){
-        final String idDevice = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         MemberPointRequest memberPointRequest = new MemberPointRequest();
         memberPointRequest.setMemberId(memberId);
         memberPointRequest.setMerchantId(merchantId);
         return  memberPointRequest;
     }
+
+
+    public static PromoInqBasicRequest setPromoInqBasicRequest(String memberId, String merchantId, String storeId,
+                                                               String productCode, String refNumber, Double totalTrxAmount, Context context){
+        PromoInqBasicRequest promoInqBasicRequest = new PromoInqBasicRequest();
+        promoInqBasicRequest.setMemberId(memberId);
+        promoInqBasicRequest.setMerchantId(merchantId);
+        promoInqBasicRequest.setStoreId(storeId);
+        promoInqBasicRequest.setBasicRulesReq(getBasicRoles(productCode, refNumber, totalTrxAmount));
+        return  promoInqBasicRequest;
+    }
+
+    public static BasicRulesReq getBasicRoles(String productCode, String refNumber, Double totalTrxAmount){
+        BasicRulesReq basicRulesReq = new BasicRulesReq();
+        basicRulesReq.setProductCode(productCode);
+        basicRulesReq.setRefNumber(refNumber);
+        basicRulesReq.setTotalTrxAmount(totalTrxAmount);
+        return  basicRulesReq;
+    }
+
 
 }

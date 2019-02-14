@@ -2,10 +2,12 @@ package com.goodie.sdk.android.data.api;
 import android.content.Context;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.request.MemberPointRequest;
+import com.goodie.sdk.android.data.request.PromoInqBasicRequest;
 import com.goodie.sdk.android.data.request.RegisterRequest;
 import com.goodie.sdk.android.data.request.VerificationRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
 import com.goodie.sdk.android.data.response.MemberPointResponse;
+import com.goodie.sdk.android.data.response.PromoInqBasicResponse;
 import com.goodie.sdk.android.data.response.RegisterResponse;
 import com.goodie.sdk.android.data.response.VerificationResponse;
 import java.io.IOException;
@@ -87,6 +89,12 @@ public enum GoodieApis {
         return api.memberPoint(GoodieModel.setMemberPointRequest(memberId, merchantId, context));
     }
 
+    public Observable<PromoInqBasicResponse> doPromoInquiryBasic(String memberId, String merchantId, String storeId,
+                                                                 String productCode, String refNumber, Double totalTrxAmount, Context context) {
+        return api.promoInquiryBasic(GoodieModel.setPromoInqBasicRequest(memberId, merchantId, storeId,
+                                                                 productCode, refNumber, totalTrxAmount, context));
+    }
+
 
     public interface Apis {
 
@@ -101,6 +109,10 @@ public enum GoodieApis {
 
         @POST("member/points")
         Observable<MemberPointResponse> memberPoint(@Body MemberPointRequest request);
+
+        @POST("promotion/inquiry")
+        Observable<PromoInqBasicResponse> promoInquiryBasic(@Body PromoInqBasicRequest request);
+
     }
 
 

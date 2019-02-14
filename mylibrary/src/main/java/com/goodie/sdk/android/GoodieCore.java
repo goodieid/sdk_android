@@ -3,6 +3,7 @@ import android.app.Application;
 import android.support.annotation.RestrictTo;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryBasicBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
 import com.goodie.sdk.android.data.builder.VerificationBuilder;
 
@@ -47,9 +48,9 @@ public class GoodieCore{
         appServer = !serverBaseUrl.endsWith("/") ? serverBaseUrl + "/" : serverBaseUrl;
     }
 
-    //login
-    public static LoginBuilder setLoginUser(String userEmail, String userKey, String memberId){
-        return new LoginBuilder(userEmail, userKey, memberId);
+    //login user
+    public static LoginBuilder setLoginUser(String userEmail, String password, String memberId){
+        return new LoginBuilder(userEmail, password, memberId);
     }
 
     //register user
@@ -68,6 +69,12 @@ public class GoodieCore{
         return new MemberPointBuilder(memberId, merchantId);
     }
 
+    //promotion inquiry basic
+    public static PromotionInquiryBasicBuilder setPromotionInqBuilder(String memberId, String merchantId,
+                                                    String storeId, String productCode, String refNumber,
+                                                    Double totalTrxAmount){
+        return new PromotionInquiryBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
+    }
 
 
 

@@ -3,6 +3,7 @@ import android.app.Application;
 import android.support.annotation.RestrictTo;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryBasicBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
 import com.goodie.sdk.android.data.builder.VerificationBuilder;
 import com.goodie.sdk.android.data.config.GoodieConfig;
@@ -39,6 +40,14 @@ public class Goodie {
     public static MemberPointBuilder setMemberPoint(String memberId, String merchantId){
         return GoodieCore.setMemberPointBuilder(memberId, merchantId);
     }
+
+    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId,
+                                                                        String storeId, String productCode, String refNumber,
+                                                                        Double totalTrxAmount){
+        return GoodieCore.setPromotionInqBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
+    }
+
+
 
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     public static void initWithCustomServer(Application application, String qiscusAppId, String serverBaseUrl) {

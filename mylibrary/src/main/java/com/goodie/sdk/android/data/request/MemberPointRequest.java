@@ -29,6 +29,7 @@ public class MemberPointRequest {
         this.merchantId = merchantId;
     }
 
+    @Override
     public String toString(){
         return
                 "MemberPointReq{" +
