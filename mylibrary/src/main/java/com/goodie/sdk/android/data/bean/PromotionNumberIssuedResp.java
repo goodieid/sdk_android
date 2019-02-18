@@ -3,6 +3,8 @@ package com.goodie.sdk.android.data.bean;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by Goodie on 14/02/2019.
  */
@@ -28,7 +30,7 @@ public class PromotionNumberIssuedResp {
 
     @SerializedName("customRulePoints")
     @Expose
-    private Object customRulePoints;
+    private List<CustomRulePointsResp> customRulePoints;
 
 
     public String getPromotionCode() {
@@ -63,15 +65,15 @@ public class PromotionNumberIssuedResp {
         this.basicRulePoint = basicRulePoint;
     }
 
-    public Object getCustomRulePoints() {
+    public List<CustomRulePointsResp> getCustomRulePoints() {
         return customRulePoints;
     }
 
-    public void setCustomRulePoints(Object customRulePoints) {
+    public void setCustomRulePoints(List<CustomRulePointsResp> customRulePoints) {
         this.customRulePoints = customRulePoints;
     }
 
-        /*"promotionCode": "PRM32016001",
+  /*"promotionCode": "PRM32016001",
             "promotionName": "Unbelievable 2017",
             "basicRuleName": "Unbelievable 2016",
             "basicRulePoint": 10,

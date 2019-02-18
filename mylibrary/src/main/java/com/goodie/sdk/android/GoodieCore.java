@@ -77,7 +77,6 @@ public class GoodieCore{
     }
 
 
-
     /**
      * Use this method if we need application context instance
      *

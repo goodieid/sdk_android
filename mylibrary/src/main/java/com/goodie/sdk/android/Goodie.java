@@ -22,10 +22,12 @@ public class Goodie {
         initWithCustomServer(application, qiscusAppId, "");
     }
 
+    //login goodie
     public static LoginBuilder setLogin(String userEmail, String password, String memberId){
         return GoodieCore.setLoginUser(userEmail, password, memberId);
     }
 
+    //register goodie
     public static RegisterBuilder setRegister(String username, String merchantId, String phoneNumber,
                                               String password, String firstName, String lastName,
                                               String birthDate, String referralCode){
@@ -33,24 +35,25 @@ public class Goodie {
                                             birthDate, referralCode);
     }
 
+    //verification goodie
     public static VerificationBuilder setVerification(String username, String merchantId, String code){
         return GoodieCore.setVerificationUser(username, merchantId, code);
     }
 
+    //memberpoint goodie
     public static MemberPointBuilder setMemberPoint(String memberId, String merchantId){
         return GoodieCore.setMemberPointBuilder(memberId, merchantId);
     }
 
-    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId,
-                                                                        String storeId, String productCode, String refNumber,
-                                                                        Double totalTrxAmount){
+    //promotion inquiry basic goodie
+    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
+                                                                        String productCode, String refNumber, Double totalTrxAmount){
         return GoodieCore.setPromotionInqBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
     }
 
 
-
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
-    public static void initWithCustomServer(Application application, String qiscusAppId, String serverBaseUrl) {
+    public static void initWithCustomServer(Application application, String qiscusAppId, String serverBaseUrl){
         GoodieCore.initWithCustomServer(application, qiscusAppId, serverBaseUrl);
         goodieConfig = new GoodieConfig();
     }

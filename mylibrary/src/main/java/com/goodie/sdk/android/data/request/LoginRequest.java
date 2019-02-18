@@ -62,7 +62,7 @@ public class LoginRequest {
                         "}";
     }
 
-    /*sample request
+    /*
     {
         "deviceUniqueId": "tokentokenan",
             "username" : "macan3@gmail.com",

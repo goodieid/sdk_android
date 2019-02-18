@@ -1,14 +1,12 @@
 package com.goodie.sdk.android.data.api;
 import android.content.Context;
 import android.provider.Settings;
-
 import com.goodie.sdk.android.data.bean.BasicRulesReq;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.request.MemberPointRequest;
 import com.goodie.sdk.android.data.request.PromoInqBasicRequest;
 import com.goodie.sdk.android.data.request.RegisterRequest;
 import com.goodie.sdk.android.data.request.VerificationRequest;
-import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Goodie on 13/02/2019.
@@ -16,12 +14,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class GoodieModel {
 
+    //get deviceid
     public static String getDeviceId(Context context){
         String result = "";
         result = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         return result;
     }
 
+    //get data login request
     public static LoginRequest setLoginRequest(String username, String password, String memberId, Context context){
         final String idDevice = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         LoginRequest loginRequest = new LoginRequest();
@@ -32,6 +32,7 @@ public class GoodieModel {
         return  loginRequest;
     }
 
+    //get data register request
     public static RegisterRequest setRegisterRequest(String username, String merchantId,
                                                      String phoneNumber, String password,
                                                      String firstName, String lastName,
@@ -50,6 +51,7 @@ public class GoodieModel {
         return registerRequest;
     }
 
+    //get data verification request
     public static VerificationRequest setVerificationRequest(String username, String code, String merchantId, Context context){
         VerificationRequest verificationRequest = new VerificationRequest();
         verificationRequest.setUsername(username);
@@ -58,11 +60,21 @@ public class GoodieModel {
         return  verificationRequest;
     }
 
+    //get data member request
     public static MemberPointRequest setMemberPointRequest(String memberId, String merchantId, Context context){
         MemberPointRequest memberPointRequest = new MemberPointRequest();
         memberPointRequest.setMemberId(memberId);
         memberPointRequest.setMerchantId(merchantId);
         return  memberPointRequest;
+    }
+
+    //get data basiq role
+    public static BasicRulesReq getBasicRoles(String productCode, String refNumber, Double totalTrxAmount){
+        BasicRulesReq basicRulesReq = new BasicRulesReq();
+        basicRulesReq.setProductCode(productCode);
+        basicRulesReq.setRefNumber(refNumber);
+        basicRulesReq.setTotalTrxAmount(totalTrxAmount);
+        return  basicRulesReq;
     }
 
 
@@ -76,13 +88,8 @@ public class GoodieModel {
         return  promoInqBasicRequest;
     }
 
-    public static BasicRulesReq getBasicRoles(String productCode, String refNumber, Double totalTrxAmount){
-        BasicRulesReq basicRulesReq = new BasicRulesReq();
-        basicRulesReq.setProductCode(productCode);
-        basicRulesReq.setRefNumber(refNumber);
-        basicRulesReq.setTotalTrxAmount(totalTrxAmount);
-        return  basicRulesReq;
-    }
+
+
 
 
 }

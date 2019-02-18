@@ -20,7 +20,6 @@ public class PromotionInquiryBasicBuilder {
     private String refNumber;
     private Double totalTrxAmount;
 
-
     public PromotionInquiryBasicBuilder(String memberId, String merchantId, String storeId,
                                         String productCode, String refNumber, Double totalTrxAmount){
         this.memberId = memberId;
@@ -39,7 +38,7 @@ public class PromotionInquiryBasicBuilder {
     }
 
     public Observable<PromoInqBasicResponse> promoInqBasicObserv(String memberId, String merchantId, String storeId,
-                                                               String productCode, String refNumber, Double totalTrxAmount, Context context){
+                                                                 String productCode, String refNumber, Double totalTrxAmount, Context context){
         return GoodieApis.getInstance().doPromoInquiryBasic(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount, context);
     }
 
