@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by Goodie on 15/02/2019.
+ * Created by Goodie on 18/02/2019.
  */
 
-public class PromoInqCustomAmountResponse extends GenericResponse{
+public class PromotionPostingResponse extends GenericResponse {
 
     @SerializedName("memberId")
     private String memberId;

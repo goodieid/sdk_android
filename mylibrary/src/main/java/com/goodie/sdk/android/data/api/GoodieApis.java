@@ -1,18 +1,23 @@
 package com.goodie.sdk.android.data.api;
 import android.content.Context;
+import com.goodie.sdk.android.data.bean.BasicRulesReq;
+import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.request.MemberPointRequest;
 import com.goodie.sdk.android.data.request.PromoInqBasicRequest;
-import com.goodie.sdk.android.data.request.PromoInqCustomAmountRequest;
+import com.goodie.sdk.android.data.request.PromotionInquiryRequest;
+import com.goodie.sdk.android.data.request.PromotionPostingRequest;
 import com.goodie.sdk.android.data.request.RegisterRequest;
 import com.goodie.sdk.android.data.request.VerificationRequest;
 import com.goodie.sdk.android.data.response.LoginResponse;
 import com.goodie.sdk.android.data.response.MemberPointResponse;
 import com.goodie.sdk.android.data.response.PromoInqBasicResponse;
-import com.goodie.sdk.android.data.response.PromoInqCustomAmountResponse;
+import com.goodie.sdk.android.data.response.PromotionInquiryResponse;
+import com.goodie.sdk.android.data.response.PromotionPostingResponse;
 import com.goodie.sdk.android.data.response.RegisterResponse;
 import com.goodie.sdk.android.data.response.VerificationResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -91,19 +96,24 @@ public enum GoodieApis {
         return api.memberPoint(GoodieModel.setMemberPointRequest(memberId, merchantId, context));
     }
 
-    public Observable<PromoInqBasicResponse> doPromoInquiryBasic(String memberId, String merchantId, String storeId,
+
+    public Observable<PromotionInquiryResponse> doPromotionInquiry(String memberId, String merchantId, String storeId,
+                                                                   BasicRulesReq basicRulesReq, List<CustomRulesReq> customRulesReq, Context context) {
+        return api.promotionInquiry(GoodieModel.setPromotionInquiryRequest(memberId, merchantId, storeId, basicRulesReq, customRulesReq, context));
+    }
+
+
+    public Observable<PromotionPostingResponse> doPromotionPosting(String memberId, String merchantId, String storeId,
+                                                                   BasicRulesReq basicRulesReq, List<CustomRulesReq> customRulesReq, Context context) {
+        return api.promotionPosting(GoodieModel.setPromotionPostingRequest(memberId, merchantId, storeId, basicRulesReq, customRulesReq, context));
+    }
+
+
+    /*public Observable<PromoInqBasicResponse> doPromoInquiryBasic(String memberId, String merchantId, String storeId,
                                                                  String productCode, String refNumber, Double totalTrxAmount, Context context) {
         return api.promoInquiryBasic(GoodieModel.setPromoInqBasicRequest(memberId, merchantId, storeId,
                                                                  productCode, refNumber, totalTrxAmount, context));
-    }
-
-    /*public Observable<PromoInqCustomAmountRequest> doPromoInquiryCustomAmount(String memberId, String merchantId, String storeId,
-                                                                 String productCode, String refNumber, Double totalTrxAmount, Context context) {
-        return api.promoInquiryCustomByAmount(GoodieModel.setPromoInqBasicRequest(memberId, merchantId, storeId,
-                productCode, refNumber, totalTrxAmount, context));
     }*/
-
-
 
     public interface Apis {
 
@@ -120,10 +130,14 @@ public enum GoodieApis {
         Observable<MemberPointResponse> memberPoint(@Body MemberPointRequest request);
 
         @POST("promotion/inquiry")
-        Observable<PromoInqBasicResponse> promoInquiryBasic(@Body PromoInqBasicRequest request);
+        Observable<PromotionInquiryResponse> promotionInquiry(@Body PromotionInquiryRequest request);
 
-        @POST("promotion/inquiry")
-        Observable<PromoInqCustomAmountResponse> promoInquiryCustomByAmount(@Body PromoInqCustomAmountRequest request);
+        @POST("promotion/posting")
+        Observable<PromotionPostingResponse> promotionPosting(@Body PromotionPostingRequest request);
+
+
+         /*@POST("promotion/inquiry")
+        Observable<PromoInqBasicResponse> promoInquiryBasic(@Body PromoInqBasicRequest request);*/
 
     }
 

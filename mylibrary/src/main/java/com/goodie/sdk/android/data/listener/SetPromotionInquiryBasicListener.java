@@ -6,6 +6,6 @@ import com.goodie.sdk.android.data.response.PromoInqBasicResponse;
  */
 
 public interface SetPromotionInquiryBasicListener {
-    void onSuccess(PromoInqBasicResponse loginResponse);
+    void onSuccess(PromoInqBasicResponse promoInqBasicResponse);
     void onError(Throwable throwable);
 }

@@ -1,14 +1,16 @@
 package com.goodie.sdk.android.data.request;
-import com.goodie.sdk.android.data.bean.PromoInqCustomAmountReq;
+import com.goodie.sdk.android.data.bean.BasicRulesReq;
+import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by Goodie on 15/02/2019.
+ * Created by Goodie on 18/02/2019.
  */
 
-public class PromoInqCustomAmountRequest {
+public class PromotionInquiryRequest {
+
 
     @SerializedName("memberId")
     private String memberId;
@@ -19,9 +21,13 @@ public class PromoInqCustomAmountRequest {
     @SerializedName("storeId")
     private String storeId;
 
+    @SerializedName("basic")
+    @Expose
+    private BasicRulesReq basicRulesReq;
+
     @SerializedName("custom")
     @Expose
-    private ArrayList<PromoInqCustomAmountReq> promoInqCustomAmountReqs;
+    private List<CustomRulesReq> customRulesReqs;
 
     public String getMemberId() {
         return memberId;
@@ -47,12 +53,19 @@ public class PromoInqCustomAmountRequest {
         this.storeId = storeId;
     }
 
-    public ArrayList<PromoInqCustomAmountReq> getPromoInqCustomAmountReqs() {
-        return promoInqCustomAmountReqs;
+    public BasicRulesReq getBasicRulesReq() {
+        return basicRulesReq;
     }
 
-    public void setPromoInqCustomAmountReqs(ArrayList<PromoInqCustomAmountReq> promoInqCustomAmountReqs) {
-        this.promoInqCustomAmountReqs = promoInqCustomAmountReqs;
+    public void setBasicRulesReq(BasicRulesReq basicRulesReq) {
+        this.basicRulesReq = basicRulesReq;
     }
 
+    public List<CustomRulesReq> getCustomRulesReqs() {
+        return customRulesReqs;
+    }
+
+    public void setCustomRulesReqs(List<CustomRulesReq> customRulesReqs) {
+        this.customRulesReqs = customRulesReqs;
+    }
 }

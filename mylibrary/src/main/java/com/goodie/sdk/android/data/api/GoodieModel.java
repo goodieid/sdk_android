@@ -2,11 +2,16 @@ package com.goodie.sdk.android.data.api;
 import android.content.Context;
 import android.provider.Settings;
 import com.goodie.sdk.android.data.bean.BasicRulesReq;
+import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.goodie.sdk.android.data.request.LoginRequest;
 import com.goodie.sdk.android.data.request.MemberPointRequest;
 import com.goodie.sdk.android.data.request.PromoInqBasicRequest;
+import com.goodie.sdk.android.data.request.PromotionInquiryRequest;
+import com.goodie.sdk.android.data.request.PromotionPostingRequest;
 import com.goodie.sdk.android.data.request.RegisterRequest;
 import com.goodie.sdk.android.data.request.VerificationRequest;
+
+import java.util.List;
 
 /**
  * Created by Goodie on 13/02/2019.
@@ -78,7 +83,7 @@ public class GoodieModel {
     }
 
 
-    public static PromoInqBasicRequest setPromoInqBasicRequest(String memberId, String merchantId, String storeId,
+    /*public static PromoInqBasicRequest setPromoInqBasicRequest(String memberId, String merchantId, String storeId,
                                                                String productCode, String refNumber, Double totalTrxAmount, Context context){
         PromoInqBasicRequest promoInqBasicRequest = new PromoInqBasicRequest();
         promoInqBasicRequest.setMemberId(memberId);
@@ -86,8 +91,37 @@ public class GoodieModel {
         promoInqBasicRequest.setStoreId(storeId);
         promoInqBasicRequest.setBasicRulesReq(getBasicRoles(productCode, refNumber, totalTrxAmount));
         return  promoInqBasicRequest;
+    }*/
+
+
+    //promotion inquiry model
+    public static PromotionInquiryRequest setPromotionInquiryRequest(String memberId, String merchantId, String storeId,
+                                                                  BasicRulesReq basicRulesReq,
+                                                                  List<CustomRulesReq> customRulesReq,
+                                                                  Context context){
+        PromotionInquiryRequest promotionInquiryRequest = new PromotionInquiryRequest();
+        promotionInquiryRequest.setMemberId(memberId);
+        promotionInquiryRequest.setMerchantId(merchantId);
+        promotionInquiryRequest.setStoreId(storeId);
+        promotionInquiryRequest.setBasicRulesReq(basicRulesReq);
+        promotionInquiryRequest.setCustomRulesReqs(customRulesReq);
+        return  promotionInquiryRequest;
     }
 
+
+    //promotion posting model
+    public static PromotionPostingRequest setPromotionPostingRequest(String memberId, String merchantId, String storeId,
+                                                                     BasicRulesReq basicRulesReq,
+                                                                     List<CustomRulesReq> customRulesReq,
+                                                                     Context context){
+        PromotionPostingRequest promotionPostingRequest = new PromotionPostingRequest();
+        promotionPostingRequest.setMemberId(memberId);
+        promotionPostingRequest.setMerchantId(merchantId);
+        promotionPostingRequest.setStoreId(storeId);
+        promotionPostingRequest.setBasicRulesReq(basicRulesReq);
+        promotionPostingRequest.setCustomRulesReqs(customRulesReq);
+        return  promotionPostingRequest;
+    }
 
 
 

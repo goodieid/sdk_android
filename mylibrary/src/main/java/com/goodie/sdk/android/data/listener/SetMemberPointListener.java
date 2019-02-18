@@ -6,6 +6,6 @@ import com.goodie.sdk.android.data.response.MemberPointResponse;
  */
 
 public interface SetMemberPointListener {
-    void onSuccess(MemberPointResponse loginResponse);
+    void onSuccess(MemberPointResponse memberPointResponse);
     void onError(Throwable throwable);
 }

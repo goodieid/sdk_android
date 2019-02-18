@@ -1,18 +1,22 @@
 package com.goodie.sdk.android;
 import android.app.Application;
 import android.support.annotation.RestrictTo;
+import com.goodie.sdk.android.data.bean.BasicRulesReq;
+import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
-import com.goodie.sdk.android.data.builder.PromotionInquiryBasicBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryBuilder;
+import com.goodie.sdk.android.data.builder.PromotionPostingBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
 import com.goodie.sdk.android.data.builder.VerificationBuilder;
 import com.goodie.sdk.android.data.config.GoodieConfig;
+import java.util.List;
 
 /**
  * Created by asep.surahman on 07/01/2019.
  */
 
-public class Goodie {
+public class Goodie{
 
     private static GoodieConfig goodieConfig;
     private Goodie(){
@@ -31,8 +35,7 @@ public class Goodie {
     public static RegisterBuilder setRegister(String username, String merchantId, String phoneNumber,
                                               String password, String firstName, String lastName,
                                               String birthDate, String referralCode){
-        return GoodieCore.setRegisterUser(username, merchantId, phoneNumber, password, firstName, lastName,
-                                            birthDate, referralCode);
+        return GoodieCore.setRegisterUser(username, merchantId, phoneNumber, password, firstName, lastName, birthDate, referralCode);
     }
 
     //verification goodie
@@ -45,11 +48,26 @@ public class Goodie {
         return GoodieCore.setMemberPointBuilder(memberId, merchantId);
     }
 
+    //promotion inquiry goodie all type
+    public static PromotionInquiryBuilder setPromotionInquiry(String memberId, String merchantId, String storeId,
+                                                              BasicRulesReq basicRulesReq,
+                                                              List<CustomRulesReq> customRulesReqs){
+        return GoodieCore.setPromotionInquiryBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+    }
+
+
+    //promotion posting goodie all type
+    public static PromotionPostingBuilder setPromotionPosting(String memberId, String merchantId, String storeId,
+                                                              BasicRulesReq basicRulesReq,
+                                                              List<CustomRulesReq> customRulesReqs){
+        return GoodieCore.setPromotionPostingBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+    }
+
     //promotion inquiry basic goodie
-    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
+    /*public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
                                                                         String productCode, String refNumber, Double totalTrxAmount){
         return GoodieCore.setPromotionInqBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
-    }
+    }*/
 
 
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)

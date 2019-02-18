@@ -1,11 +1,16 @@
 package com.goodie.sdk.android;
 import android.app.Application;
 import android.support.annotation.RestrictTo;
+import com.goodie.sdk.android.data.bean.BasicRulesReq;
+import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
-import com.goodie.sdk.android.data.builder.PromotionInquiryBasicBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryBuilder;
+import com.goodie.sdk.android.data.builder.PromotionPostingBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
 import com.goodie.sdk.android.data.builder.VerificationBuilder;
+
+import java.util.List;
 
 /**
  * Created by asep.surahman on 09/01/2019.
@@ -69,12 +74,29 @@ public class GoodieCore{
         return new MemberPointBuilder(memberId, merchantId);
     }
 
+    //promotion inquiry
+    public static PromotionInquiryBuilder setPromotionInquiryBuilder(String memberId, String merchantId,
+                                                                     String storeId, BasicRulesReq basicRulesReq,
+                                                                     List<CustomRulesReq> customRulesReqs){
+        return new PromotionInquiryBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+    }
+
+    //promotion posting
+    public static PromotionPostingBuilder setPromotionPostingBuilder(String memberId, String merchantId,
+                                                                     String storeId, BasicRulesReq basicRulesReq,
+                                                                     List<CustomRulesReq> customRulesReqs){
+        return new PromotionPostingBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
+    }
+
+
+
     //promotion inquiry basic
-    public static PromotionInquiryBasicBuilder setPromotionInqBuilder(String memberId, String merchantId,
+    /*public static PromotionInquiryBasicBuilder setPromotionInqBuilder(String memberId, String merchantId,
                                                     String storeId, String productCode, String refNumber,
                                                     Double totalTrxAmount){
         return new PromotionInquiryBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
     }
+    */
 
 
     /**
