@@ -83,7 +83,7 @@ public class GoodieModel {
     }
 
 
-    /*public static PromoInqBasicRequest setPromoInqBasicRequest(String memberId, String merchantId, String storeId,
+    public static PromoInqBasicRequest setPromoInqBasicRequest(String memberId, String merchantId, String storeId,
                                                                String productCode, String refNumber, Double totalTrxAmount, Context context){
         PromoInqBasicRequest promoInqBasicRequest = new PromoInqBasicRequest();
         promoInqBasicRequest.setMemberId(memberId);
@@ -91,7 +91,7 @@ public class GoodieModel {
         promoInqBasicRequest.setStoreId(storeId);
         promoInqBasicRequest.setBasicRulesReq(getBasicRoles(productCode, refNumber, totalTrxAmount));
         return  promoInqBasicRequest;
-    }*/
+    }
 
 
     //promotion inquiry model

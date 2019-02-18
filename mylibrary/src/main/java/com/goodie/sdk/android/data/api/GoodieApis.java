@@ -109,11 +109,11 @@ public enum GoodieApis {
     }
 
 
-    /*public Observable<PromoInqBasicResponse> doPromoInquiryBasic(String memberId, String merchantId, String storeId,
+    public Observable<PromoInqBasicResponse> doPromoInquiryBasic(String memberId, String merchantId, String storeId,
                                                                  String productCode, String refNumber, Double totalTrxAmount, Context context) {
         return api.promoInquiryBasic(GoodieModel.setPromoInqBasicRequest(memberId, merchantId, storeId,
                                                                  productCode, refNumber, totalTrxAmount, context));
-    }*/
+    }
 
     public interface Apis {
 
@@ -136,8 +136,8 @@ public enum GoodieApis {
         Observable<PromotionPostingResponse> promotionPosting(@Body PromotionPostingRequest request);
 
 
-         /*@POST("promotion/inquiry")
-        Observable<PromoInqBasicResponse> promoInquiryBasic(@Body PromoInqBasicRequest request);*/
+         @POST("promotion/inquiry")
+        Observable<PromoInqBasicResponse> promoInquiryBasic(@Body PromoInqBasicRequest request);
 
     }
 
