@@ -23,7 +23,7 @@ public class VerificationBuilder {
         this.code = code;
     }
 
-    public void rverificationGoodie(Context context, SetVerificationListener listener){
+    public void verificationGoodie(Context context, SetVerificationListener listener){
         verificationObserv(username, merchantId, code, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
