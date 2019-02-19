@@ -135,7 +135,6 @@ public enum GoodieApis {
         @POST("promotion/posting")
         Observable<PromotionPostingResponse> promotionPosting(@Body PromotionPostingRequest request);
 
-
          @POST("promotion/inquiry")
         Observable<PromoInqBasicResponse> promoInquiryBasic(@Body PromoInqBasicRequest request);
 
