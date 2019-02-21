@@ -5,7 +5,10 @@ import com.goodie.sdk.android.data.bean.BasicRulesReq;
 import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryBasicBuilder;
 import com.goodie.sdk.android.data.builder.PromotionInquiryBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryCustomByAmountBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryCustomIssuingBuilder;
 import com.goodie.sdk.android.data.builder.PromotionPostingBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
 import com.goodie.sdk.android.data.builder.VerificationBuilder;
@@ -48,13 +51,12 @@ public class Goodie{
         return GoodieCore.setMemberPointBuilder(memberId, merchantId);
     }
 
-    //promotion inquiry goodie all type
-    public static PromotionInquiryBuilder setPromotionInquiry(String memberId, String merchantId, String storeId,
+    //promotion inquiry goodie all type (MIX)
+    public static PromotionInquiryBuilder setPromotionMixInquiry(String memberId, String merchantId, String storeId,
                                                               BasicRulesReq basicRulesReq,
                                                               List<CustomRulesReq> customRulesReqs){
         return GoodieCore.setPromotionInquiryBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
-
 
     //promotion posting goodie all type
     public static PromotionPostingBuilder setPromotionPosting(String memberId, String merchantId, String storeId,
@@ -64,11 +66,23 @@ public class Goodie{
     }
 
     //promotion inquiry basic goodie
-    /*public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
+    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
                                                                         String productCode, String refNumber, Double totalTrxAmount){
-        return GoodieCore.setPromotionInqBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
-    }*/
+        return GoodieCore.setPromotionInqBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
+    }
 
+    //promotion inquiry custom Issuing
+    public static PromotionInquiryCustomIssuingBuilder setPromotionInquiryIssuing(String memberId, String merchantId, String storeId,
+                                                                                String ruleName){
+        return GoodieCore.setPromotionInqCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, 1, 0.0, "");
+    }
+
+
+    //promotion inquiry custom by Amount
+    public static PromotionInquiryCustomByAmountBuilder setPromotionInquiryByAmount(String memberId, String merchantId, String storeId,
+                                                                                   String ruleName, Double amount){
+        return GoodieCore.setPromotionInqCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, 0, amount, "");
+    }
 
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     public static void initWithCustomServer(Application application, String qiscusAppId, String serverBaseUrl){

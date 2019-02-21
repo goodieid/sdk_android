@@ -5,13 +5,9 @@ import android.content.Context;
 import com.goodie.sdk.android.data.api.GoodieApis;
 import com.goodie.sdk.android.data.bean.BasicRulesReq;
 import com.goodie.sdk.android.data.bean.CustomRulesReq;
-import com.goodie.sdk.android.data.listener.SetPromotionInquiryListener;
 import com.goodie.sdk.android.data.listener.SetPromotionPostingListener;
-import com.goodie.sdk.android.data.response.PromotionInquiryResponse;
 import com.goodie.sdk.android.data.response.PromotionPostingResponse;
-
 import java.util.List;
-
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -44,6 +40,7 @@ public class PromotionPostingBuilder {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
+
 
     public Observable<PromotionPostingResponse> promoPostingObserv(String memberId, String merchantId, String storeId,
                                                                    BasicRulesReq basicRulesReq, List<CustomRulesReq> customRulesReqs, Context context){

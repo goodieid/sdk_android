@@ -5,11 +5,13 @@ import com.goodie.sdk.android.data.bean.BasicRulesReq;
 import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
 import com.goodie.sdk.android.data.builder.MemberPointBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryBasicBuilder;
 import com.goodie.sdk.android.data.builder.PromotionInquiryBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryCustomByAmountBuilder;
+import com.goodie.sdk.android.data.builder.PromotionInquiryCustomIssuingBuilder;
 import com.goodie.sdk.android.data.builder.PromotionPostingBuilder;
 import com.goodie.sdk.android.data.builder.RegisterBuilder;
 import com.goodie.sdk.android.data.builder.VerificationBuilder;
-
 import java.util.List;
 
 /**
@@ -88,15 +90,26 @@ public class GoodieCore{
         return new PromotionPostingBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
 
-
-
     //promotion inquiry basic
-    /*public static PromotionInquiryBasicBuilder setPromotionInqBuilder(String memberId, String merchantId,
+    public static PromotionInquiryBasicBuilder setPromotionInqBasicBuilder(String memberId, String merchantId,
                                                     String storeId, String productCode, String refNumber,
                                                     Double totalTrxAmount){
         return new PromotionInquiryBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
     }
-    */
+
+    //promotion inquiry custom issuing
+    public static PromotionInquiryCustomIssuingBuilder setPromotionInqCustomIssuingBuilder(String memberId, String merchantId,
+                                                                                   String storeId, String ruleName, int issuing,
+                                                                                   Double amount, String refNumber){
+        return new PromotionInquiryCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber);
+    }
+
+    //promotion inquiry custom by Amount
+    public static PromotionInquiryCustomByAmountBuilder setPromotionInqCustomByAmountBuilder(String memberId, String merchantId,
+                                                                                            String storeId, String ruleName, int issuing,
+                                                                                            Double amount, String refNumber){
+        return new PromotionInquiryCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber);
+    }
 
 
     /**
