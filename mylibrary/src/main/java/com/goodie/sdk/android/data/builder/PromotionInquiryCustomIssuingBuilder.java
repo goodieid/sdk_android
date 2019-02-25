@@ -38,6 +38,7 @@ public class PromotionInquiryCustomIssuingBuilder {
         this.refNumber = refNumber;
     }
 
+
     public void promotionInquiryCustomIssuingGoodie(Context context, SetPromotionInquiryBasicListener listener){
         promoInqCustomIssuingObserv(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context)
                 .subscribeOn(Schedulers.io())
@@ -45,9 +46,11 @@ public class PromotionInquiryCustomIssuingBuilder {
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
+
     public Observable<PromoInqBasicResponse> promoInqCustomIssuingObserv(String memberId, String merchantId, String storeId,
                                                                          String ruleName, int issuing, Double amount, String refNumber, Context context){
         return GoodieApis.getInstance().doPromoInquiryCustomIssuing(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber, context);
     }
+
 
 }

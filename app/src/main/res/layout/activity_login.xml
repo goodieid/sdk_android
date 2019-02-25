@@ -63,6 +63,15 @@
 
             </android.support.design.widget.TextInputLayout>
 
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space"
+                android:text="Cek"
+                android:layout_gravity="top"
+                />
+
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"

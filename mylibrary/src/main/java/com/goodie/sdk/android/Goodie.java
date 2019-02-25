@@ -1,6 +1,8 @@
 package com.goodie.sdk.android;
 import android.app.Application;
 import android.support.annotation.RestrictTo;
+
+import com.goodie.sdk.android.Util.Constant;
 import com.goodie.sdk.android.data.bean.BasicRulesReq;
 import com.goodie.sdk.android.data.bean.CustomRulesReq;
 import com.goodie.sdk.android.data.builder.LoginBuilder;
@@ -42,8 +44,8 @@ public class Goodie{
     }
 
     //verification goodie
-    public static VerificationBuilder setVerification(String username, String merchantId, String code){
-        return GoodieCore.setVerificationUser(username, merchantId, code);
+    public static VerificationBuilder setVerification(String username, String merchantId, String verificationCode){
+        return GoodieCore.setVerificationUser(username, merchantId, verificationCode);
     }
 
     //memberpoint goodie
@@ -58,6 +60,27 @@ public class Goodie{
         return GoodieCore.setPromotionInquiryBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
 
+    //promotion inquiry basic goodie
+    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
+                                                                        String productCode, String refNumber, Double totalTrxAmount){
+        return GoodieCore.setPromotionInqBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
+    }
+
+
+    //promotion inquiry custom Issuing
+    public static PromotionInquiryCustomIssuingBuilder setPromotionInquiryIssuing(String memberId, String merchantId, String storeId,
+                                                                                String ruleName, String ref){
+        return GoodieCore.setPromotionInqCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, Constant.ISSUING_TYPE, 0.0, ref);
+    }
+
+
+    //promotion inquiry custom by Amount
+    public static PromotionInquiryCustomByAmountBuilder setPromotionInquiryByAmount(String memberId, String merchantId, String storeId,
+                                                                                   String ruleName, Double amount, String ref){
+        return GoodieCore.setPromotionInqCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, Constant.AMOUNT_TYPE, amount, ref);
+    }
+
+
     //promotion posting goodie all type
     public static PromotionPostingBuilder setPromotionPosting(String memberId, String merchantId, String storeId,
                                                               BasicRulesReq basicRulesReq,
@@ -65,24 +88,6 @@ public class Goodie{
         return GoodieCore.setPromotionPostingBuilder(memberId, merchantId, storeId, basicRulesReq, customRulesReqs);
     }
 
-    //promotion inquiry basic goodie
-    public static PromotionInquiryBasicBuilder setPromotionInquiryBasic(String memberId, String merchantId, String storeId,
-                                                                        String productCode, String refNumber, Double totalTrxAmount){
-        return GoodieCore.setPromotionInqBasicBuilder(memberId, merchantId, storeId, productCode, refNumber, totalTrxAmount);
-    }
-
-    //promotion inquiry custom Issuing
-    public static PromotionInquiryCustomIssuingBuilder setPromotionInquiryIssuing(String memberId, String merchantId, String storeId,
-                                                                                String ruleName){
-        return GoodieCore.setPromotionInqCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, 1, 0.0, "");
-    }
-
-
-    //promotion inquiry custom by Amount
-    public static PromotionInquiryCustomByAmountBuilder setPromotionInquiryByAmount(String memberId, String merchantId, String storeId,
-                                                                                   String ruleName, Double amount){
-        return GoodieCore.setPromotionInqCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, 0, amount, "");
-    }
 
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     public static void initWithCustomServer(Application application, String qiscusAppId, String serverBaseUrl){

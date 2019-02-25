@@ -67,8 +67,8 @@ public class GoodieCore{
     }
 
     //verification
-    public static VerificationBuilder setVerificationUser(String username, String merchantId, String code){
-        return new VerificationBuilder(username, merchantId, code);
+    public static VerificationBuilder setVerificationUser(String username, String merchantId, String verificationCode){
+        return new VerificationBuilder(username, merchantId, verificationCode);
     }
 
     //member point
@@ -100,15 +100,15 @@ public class GoodieCore{
     //promotion inquiry custom issuing
     public static PromotionInquiryCustomIssuingBuilder setPromotionInqCustomIssuingBuilder(String memberId, String merchantId,
                                                                                    String storeId, String ruleName, int issuing,
-                                                                                   Double amount, String refNumber){
-        return new PromotionInquiryCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber);
+                                                                                   Double amount, String ref){
+        return new PromotionInquiryCustomIssuingBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, ref);
     }
 
     //promotion inquiry custom by Amount
     public static PromotionInquiryCustomByAmountBuilder setPromotionInqCustomByAmountBuilder(String memberId, String merchantId,
                                                                                             String storeId, String ruleName, int issuing,
-                                                                                            Double amount, String refNumber){
-        return new PromotionInquiryCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, refNumber);
+                                                                                            Double amount, String ref){
+        return new PromotionInquiryCustomByAmountBuilder(memberId, merchantId, storeId, ruleName, issuing, amount, ref);
     }
 
 

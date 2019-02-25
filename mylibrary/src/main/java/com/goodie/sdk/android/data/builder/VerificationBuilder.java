@@ -15,23 +15,23 @@ public class VerificationBuilder {
 
     private String username;
     private String merchantId;
-    private String code;
+    private String verificationCode;
 
-    public VerificationBuilder(String username, String merchantId, String code){
+    public VerificationBuilder(String username, String merchantId, String verificationCode){
         this.username = username;
         this.merchantId = merchantId;
-        this.code = code;
+        this.verificationCode = verificationCode;
     }
 
     public void verificationGoodie(Context context, SetVerificationListener listener){
-        verificationObserv(username, merchantId, code, context)
+        verificationObserv(username, merchantId, verificationCode, context)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listener::onSuccess, listener::onError);
     }
 
-    public Observable<VerificationResponse> verificationObserv(String username, String merchantId, String code, Context context){
-        return GoodieApis.getInstance().doVerifation(username, merchantId, code, context);
+    public Observable<VerificationResponse> verificationObserv(String username, String merchantId, String verificationCode, Context context){
+        return GoodieApis.getInstance().doVerifation(username, merchantId, verificationCode, context);
     }
 
 
