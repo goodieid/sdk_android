@@ -44,7 +44,7 @@ public enum GoodieApis {
     private String baseUrl;
 
     GoodieApis(){
-        baseUrl = "http://52.76.117.11:8081/lifestyle-ws-goodie/api-rest/"; //URL GOODIE
+        baseUrl = "https://dev.goodie.id/api-rest/"; //URL GOODIE
         api = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(getCustomClient())
