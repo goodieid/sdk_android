@@ -1,0 +1,28 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/homeViewpager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"/>
+
+
+        <com.viewpagerindicator.CirclePageIndicator
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/circleMenuPageIndicator"
+            android:padding="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"/>
+    </RelativeLayout>
+</LinearLayout>

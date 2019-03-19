@@ -1,0 +1,51 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Base"/>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--BUTTON-->
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <!--<item name="android:fontFamily">sans-serif-lig</item>-->
+    </style>
+
+    <!--RECYCLER VIEW-->
+    <style name="GenericRecyclerViewStyle">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+    </style>
+
+    <style name="GenericRaisedButtonStyle" parent="RobotoButtonStyle">
+        <item name="android:background">@drawable/button_primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/font_reg</item>
+        <item name="android:minHeight">@dimen/_36sdp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minWidth">@dimen/_64sdp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+    </style>
+
+
+</resources>
